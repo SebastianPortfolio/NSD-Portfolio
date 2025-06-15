@@ -58,7 +58,7 @@ Each project folder includes a combination of the following elements, depending 
 - `*.csv` / `.xlsx`: Raw or processed datasets  
 - `Final_predictions.txt` or visual outputs *(when applicable)*
 
-- **Note that some smaller or exploratory projects may include only essential code and data.**
+- *Note that some smaller or exploratory projects may include only essential code and data.*
 
 ---
 
