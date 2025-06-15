@@ -1,4 +1,4 @@
-# KMeans & BIRCH Clustering – Canadian Census Income Prediction
+## KMeans & BIRCH Clustering – Canadian Census Income Prediction
 
 This project applies both supervised and unsupervised learning techniques to Canadian census data to predict median household income and cluster census tracts based on shared socioeconomic patterns. The goal is to support data-driven urban planning, housing strategy, and equitable resource distribution.
 
