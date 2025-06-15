@@ -13,9 +13,11 @@ This project applies both supervised and unsupervised learning techniques to Can
 
 ### Dataset
 
-- `CensusCanada2021Training.csv`: Training dataset containing socioeconomic and housing features by region.  
-- `CensusCanada2021Test.csv`: Test dataset with similar structure, used for predictions.  
-- `Final_predictions.txt`: Model-generated median income predictions for test regions.
+| Dataset Name                 | Description |
+|-----------------------------|-------------|
+| `CensusCanada2021Training.csv` | Training dataset containing socioeconomic and housing features by region |
+| `CensusCanada2021Test.csv`     | Test dataset with similar structure, used for predictions |
+| `Final_predictions.txt`        | Model-generated median income predictions for test regions |
 
 **Target Variable**: Median household income (numeric)  
 **Features include**:  
