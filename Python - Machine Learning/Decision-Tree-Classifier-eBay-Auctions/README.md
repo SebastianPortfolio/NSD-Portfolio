@@ -12,9 +12,12 @@ Predict auction competitiveness—defined by strong bidder engagement—using on
 
 ### Dataset
 
-| Dataset Name       | Description |
-|--------------------|-------------|
-| `ebayAuctions.xlsx`| Contains auction listing features and competitiveness labels. Includes fields like `Category`, `Currency`, `Duration`, `SellerRating`, `OpeningPrice`, and the target variable `Competitive?` |
+| Dataset Name        | Description |
+|---------------------|-------------|
+| `ebayAuctions.xlsx` | Dataset containing auction listing features such as `Category`, `Currency`, `Duration`, `SellerRating`, and `OpeningPrice`, along with the target variable |
+
+**Target Variable**: `Competitive?`  
+**Feature Types**: Mixed categorical and numerical attributes (e.g., `SellerRating`, `OpeningPrice`, `EndDay`, `Category`)
 
 ---
 
