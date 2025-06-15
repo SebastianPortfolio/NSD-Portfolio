@@ -12,9 +12,11 @@ Determine an optimal distribution plan for Comfort Health that allocates supplie
 
 ## Datasets
 
-- `centers.csv`: Supply availability at distribution centers  
-- `demands.csv`: Required demand at various healthcare facilities  
-- `distances.csv`: Distance matrix between centers and demand points  
+| Dataset Name   | Description |
+|----------------|-------------|
+| `centers.csv`  | Supply availability at each Comfort Health distribution center |
+| `demands.csv`  | Demand requirements at various healthcare delivery locations |
+| `distances.csv`| Distance matrix between distribution centers and demand points |
 
 ---
 
