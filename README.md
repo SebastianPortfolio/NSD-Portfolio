@@ -1,4 +1,4 @@
-# Welcome to My Data Science & Analytics Portfolio
+# Welcome to My Data Science & Data Analytics Portfolio
 
 I'm a data science practitioner with a strong foundation in **mathematics, engineering, and computer science**. I hold a **Master of Management Analytics** from the **University of Toronto**, and a **Bachelor of Mathematics** and **Bachelor of Computer Science** from the **University of Ottawa**.
 
