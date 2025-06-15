@@ -48,9 +48,9 @@ This project applies both supervised and unsupervised learning techniques to Can
 | `Python_Code_KMeans_and_BIRCH_Clustering_Canadian_Census_Income_Prediction.ipynb` | Full model training and prediction pipeline |
 | `Code_Walkthrough_KMeans_and_BIRCH_Clustering_Canadian_Census_Income_Prediction.ipynb` | Annotated walkthrough explaining logic and modeling steps |
 | `Project_Overview_KMeans_and_BIRCH_Clustering_Canadian_Census_Income_Prediction.pdf` | Summary of project goals, methodology, and results |
-| `CensusCanada2021Training.csv`                                            | Training dataset with census region features |
-| `CensusCanada2021Test.csv`                                               | Test dataset used for prediction |
-| `Final_predictions.txt`                                                  | Predicted income values for unseen census regions |
+| `CensusCanada2021Training.csv`| Training dataset with census region features |
+| `CensusCanada2021Test.csv`| Test dataset used for prediction |
+| `Final_predictions.txt` | Predicted income values for unseen census regions |
 
 ---
 
