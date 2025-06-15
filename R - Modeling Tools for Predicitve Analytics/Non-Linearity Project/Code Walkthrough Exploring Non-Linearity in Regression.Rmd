@@ -1,0 +1,195 @@
+
+---
+title: "Code Walkthrough: Exploring Non-Linearity in Regression"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, fig.keep = "all", fig.path = "figure/")
+library(ggplot2)
+library(boot)
+library(splines)
+```
+
+# Question 2: Function Complexity
+
+## (a) Constant Function (λ = ∞, m = 0)
+
+```{r}
+plot(1:10, rep(mean(1:10), 10), col = "blue", type = "l", 
+     main = "Constant Function", ylab = "y", xlab = "x")
+```
+
+**Explanation:**  
+A constant function fits all points to the mean, representing an extremely simple model.
+
+## (b) Linear Function (λ = ∞, m = 1)
+
+```{r}
+plot(1:10, 1:10, type = "l", col = "blue", main = "Linear Function", ylab = "y", xlab = "x")
+```
+
+**Explanation:**  
+A linear model fits data with a straight line — a moderate level of flexibility.
+
+## (c) Quadratic Function (λ = ∞, m = 2)
+
+```{r}
+x <- seq(-10, 10, length.out = 100)
+y <- x^2
+plot(x, y, type = "l", col = "red", main = "Quadratic Function", ylab = "y", xlab = "x")
+```
+
+**Explanation:**  
+Quadratic functions allow modeling of curvature, increasing flexibility over linear models.
+
+## (d) Cubic Function (λ = ∞, m = 3)
+
+```{r}
+y <- x^3
+plot(x, y, type = "l", col = "purple", main = "Cubic Function", ylab = "y", xlab = "x")
+```
+
+**Explanation:**  
+Cubic models can model inflection points and are more flexible than quadratics.
+
+## (e) Interpolated Fit (λ = 0, m = 3)
+
+```{r}
+x <- 1:10
+y <- cos(x) + rnorm(10, sd = 0.5)
+plot(x, y, type = "o", col = "orange", main = "Interpolated Fit", ylab = "y", xlab = "x")
+```
+
+**Explanation:**  
+This demonstrates overfitting, where the model fits all points exactly (zero regularization).
+
+---
+
+# Question 3: Basis Function Regression
+
+```{r}
+curve_fit <- function(X) {
+  if (X < 1) {
+    return(1 + X)
+  } else {
+    return(1 + X - 2 * (X - 1)^2)
+  }
+}
+
+X <- seq(-2, 2, by = 0.01)
+Y <- sapply(X, curve_fit)
+
+plot(X, Y, type = "l", col = "blue", lwd = 2,
+     main = "Basis Function Regression", xlab = "X", ylab = "Y")
+abline(v = 1, col = "red", lty = 2)
+points(c(-2, 0, 1, 2), sapply(c(-2, 0, 1, 2), curve_fit), pch = 16)
+```
+
+**Explanation:**  
+We build a piecewise function that models the data using a custom basis. This shows how basis expansions can capture non-linear behavior.
+
+---
+
+# Question 9: Modeling NOX from DIS (Boston Dataset)
+
+```{r}
+data <- read.table("Boston.data", header = FALSE)
+colnames(data) <- c("CRIM", "ZN", "INDUS", "CHAS", "NOX", "RM", "AGE", 
+                    "DIS", "RAD", "TAX", "PTRATIO", "B", "LSTAT")
+```
+
+## (a) Cubic Polynomial Regression
+
+```{r}
+fit_cubic <- lm(NOX ~ poly(DIS, 3), data = data)
+summary(fit_cubic)
+
+ggplot(data, aes(x = DIS, y = NOX)) +
+  geom_point(alpha = 0.5) +
+  stat_smooth(method = "lm", formula = y ~ poly(x, 3), color = "red", se = FALSE) +
+  labs(title = "Cubic Polynomial Fit", x = "DIS", y = "NOX")
+```
+
+**Explanation:**  
+Fits a cubic polynomial to model `NOX` using `DIS`, capturing non-linear trends.
+
+## (b) Polynomial Fits for Degrees 1 to 10
+
+```{r}
+rss_values <- numeric()
+for (degree in 1:10) {
+  fit <- lm(NOX ~ poly(DIS, degree), data = data)
+  rss_values[degree] <- sum(residuals(fit)^2)
+}
+plot(1:10, rss_values, type = "b", col = "blue", 
+     xlab = "Degree", ylab = "RSS", main = "RSS for Polynomial Fits")
+```
+
+**Explanation:**  
+RSS decreases as degree increases, but this may lead to overfitting.
+
+## (c) Cross-Validation for Polynomial Degree
+
+```{r}
+cv_error <- numeric()
+for (degree in 1:10) {
+  fit <- glm(NOX ~ poly(DIS, degree), data = data)
+  cv_error[degree] <- cv.glm(data, fit)$delta[1]
+}
+plot(1:10, cv_error, type = "b", col = "red", pch = 19,
+     xlab = "Polynomial Degree", ylab = "CV Error",
+     main = "Cross-Validation for Polynomial Degrees")
+```
+
+**Explanation:**  
+Selects the degree with lowest CV error, balancing bias and variance.
+
+## (d) Regression Spline with df = 4
+
+```{r}
+fit_spline <- lm(NOX ~ bs(DIS, df = 4), data = data)
+summary(fit_spline)
+
+ggplot(data, aes(x = DIS, y = NOX)) +
+  geom_point(alpha = 0.5) +
+  stat_smooth(method = "lm", formula = y ~ bs(x, df = 4), color = "red", se = FALSE) +
+  labs(title = "Regression Spline Fit (df = 4)", x = "DIS", y = "NOX")
+```
+
+**Explanation:**  
+Regression splines allow flexible fitting using piecewise polynomials with smooth transitions.
+
+## (e) RSS for Splines with Varying df
+
+```{r}
+rss_spline <- numeric()
+for (df in 3:10) {
+  fit <- lm(NOX ~ bs(DIS, df = df), data = data)
+  rss_spline[df] <- sum(residuals(fit)^2)
+}
+plot(3:10, rss_spline[3:10], type = "b", col = "blue", 
+     xlab = "Degrees of Freedom", ylab = "RSS",
+     main = "RSS for Regression Splines")
+```
+
+**Explanation:**  
+Evaluates spline flexibility more degrees of freedom allow better fit but may overfit.
+
+## (f) Cross-Validation for Splines
+
+```{r}
+cv_error_spline <- numeric()
+for (df in 3:10) {
+  fit <- glm(NOX ~ bs(DIS, df = df), data = data)
+  cv_error_spline[df] <- cv.glm(data, fit)$delta[1]
+}
+plot(3:10, cv_error_spline[3:10], type = "b", col = "red", pch = 19,
+     xlab = "Degrees of Freedom", ylab = "CV Error",
+     main = "CV Error for Regression Splines")
+```
+
+**Explanation:**  
+Cross-validation identifies the optimal degree of freedom for spline smoothing.
