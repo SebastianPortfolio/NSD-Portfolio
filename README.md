@@ -47,14 +47,18 @@ This GitHub portfolio showcases a range of **end-to-end data science and analyti
 
 ---
 
-## Repository Structure
 
-Each project folder typically contains:
-- `README.md`: Project summary and context
-- `Project_Overview.pdf` or `.docx`: Written summary of approach and findings
-- `Code_Walkthrough.ipynb` / `.Rmd`: Detailed, annotated code
-- Raw and cleaned datasets
-- Final predictions or visualizations
+##  Repository Structure
+
+Each project folder includes a combination of the following elements, depending on its scope:
+
+- `README.md`: Project summary and objectives  
+- `Project_Overview.pdf` / `.docx`: Written description of approach and findings *(available for most projects)*  
+- `Code_Walkthrough.ipynb` / `.Rmd`: Annotated code or analysis notebook  
+- `*.csv` / `.xlsx`: Raw or processed datasets  
+- `Final_predictions.txt` or visual outputs *(when applicable)*
+
+- **Note that some smaller or exploratory projects may include only essential code and data.**
 
 ---
 
@@ -71,7 +75,7 @@ Each project folder typically contains:
 
 If you're interested in collaboration, hiring, or feedback — feel free to connect!
 
-Here is my email:
+Here is my email: 
 Here is my linkedin: 
 
 ---
