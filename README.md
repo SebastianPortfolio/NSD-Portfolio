@@ -12,7 +12,7 @@ With academic training and real-world experience, I specialize in:
 - **Statistical Analysis & Forecasting**
 - **Data Wrangling, Feature Engineering, and Visualization**
 
-This GitHub portfolio showcases a range of end-to-end data science and analytics projects developed using Python, R, and SQL, across domains like e-commerce, public health, census analysis, and supply chain management.
+This GitHub portfolio showcases a range of **end-to-end data science and analytics projects** developed using **Python, R, and SQL**, across domains like e-commerce, public health, census analysis, and supply chain management.
 
 ---
 
