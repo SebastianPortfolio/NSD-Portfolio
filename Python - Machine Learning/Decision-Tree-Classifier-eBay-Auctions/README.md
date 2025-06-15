@@ -1,76 +1,70 @@
-# Decision Tree Classifier – eBay Auctions
+## Decision Tree Classifier – eBay Auctions
 
-This project develops a classification model to predict whether an eBay auction will be **competitive**, based on listing attributes such as starting price, seller rating, category, and duration. The model uses a **Decision Tree Classifier** for its interpretability and ability to handle mixed data types.
-
----
-
-## Objective
-
-To build an interpretable machine learning model that predicts auction competitiveness defined by strong bidder engagement using features available at the time of listing.
+This project develops a classification model to predict whether an eBay auction will be **competitive**, based on listing features such as starting price, seller rating, and listing duration. The model uses a **Decision Tree Classifier** for its interpretability and ability to handle mixed feature types.
 
 ---
 
-## Key Highlights
+### Objective
 
-- Preprocessing with **one-hot encoding** and log transformation of skewed features  
-- Addressed **target leakage** by excluding `ClosePrice` in a second modeling iteration  
-- Used **stratified train-test split** and **confusion matrix** analysis for evaluation  
-- Delivered **transparent decision rules** through tree visualizations and textual paths  
+Predict auction competitiveness—defined by strong bidder engagement—using only features available before the auction begins. The model avoids target leakage and supports deployment-readiness.
 
 ---
 
-## Dataset Overview
+### Dataset
 
-- File: `ebayAuctions.xlsx`  
-- Contains both categorical and numeric variables, including:
-  - `Category`, `Currency`, `Duration`, `EndDay`
-  - `SellerRating`, `OpeningPrice`, `Competitive?` (target)
-
----
-
-## Modeling
-
-Two models were developed:
-
-1. **Model 1** – includes all predictors including `ClosePrice`  
-2. **Model 2** – excludes `ClosePrice` to prevent leakage and mimic real-world usage  
-
-Both models used:
-- `DecisionTreeClassifier` from `scikit-learn`
-- Minimum leaf size of 50 to control overfitting
+| Dataset Name       | Description |
+|--------------------|-------------|
+| `ebayAuctions.xlsx`| Contains auction listing features and competitiveness labels. Includes fields like `Category`, `Currency`, `Duration`, `SellerRating`, `OpeningPrice`, and the target variable `Competitive?` |
 
 ---
 
-## Key Files
+### Methodology
 
-| File Name                                               | Description |
-|----------------------------------------------------------|-------------|
-| `Python_Code_Decision_Tree_Classifier_eBay_Auctions.ipynb` | Full implementation including preprocessing, training, and evaluation |
-| `Code_Walkthrough_Decision_Tree_Classifier_eBay_Auctions.ipynb` | Annotated version of the code with step-by-step explanations and visuals |
-| `Project Overview_Decision Tree Classifier_eBay_Auctions.pdf` | High-level summary of objectives, data, methodology, findings, and recommendations |
-| `ebayAuctions.xlsx`                                      | Raw dataset used for analysis and modeling |
+#### Preprocessing:
+- One-hot encoding for categorical variables
+- Log transformation on skewed numerical features
+- Excluded `ClosePrice` in Model 2 to simulate real-world usage
 
----
-
-## Results
-
-- **Key predictors**: `SellerRating`, `OpeningPrice`, `Category`, `EndDay`
-- **Competitive auctions** tend to have **lower opening prices** and **higher seller ratings**
-- **Model 2** (without `ClosePrice`) offered more realistic generalization for deployment
+#### Modeling:
+- Used `DecisionTreeClassifier` from scikit-learn
+- Trained two versions:
+  - **Model 1**: With `ClosePrice` (full feature set)
+  - **Model 2**: Without `ClosePrice` (to prevent leakage)
+- Controlled tree complexity via `min_samples_leaf=50`
+- Evaluation via stratified train-test split and confusion matrix
 
 ---
 
-## Future Directions
+### Key Files
 
-- Integrate **ensemble methods** (e.g., Random Forest) for improved accuracy  
-- Conduct **grid search** for hyperparameter tuning  
-- Analyze **feature importance** across models  
-- Explore **real-time deployment** in auction assistant tools
+| File Name                                                    | Description |
+|---------------------------------------------------------------|-------------|
+| `Python_Code_Decision_Tree_Classifier_eBay_Auctions.ipynb`   | Full implementation from preprocessing to model evaluation |
+| `Code_Walkthrough_Decision_Tree_Classifier_eBay_Auctions.ipynb` | Annotated explanation of preprocessing, feature selection, and model logic |
+| `Project Overview_Decision Tree Classifier_eBay_Auctions.pdf`| Executive summary with problem framing, methodology, insights, and takeaways |
+| `ebayAuctions.xlsx`                                          | Original dataset used for training and analysis |
 
 ---
 
-## Tools Used
+### Results & Insights
 
-- `pandas`, `numpy`, `matplotlib`, `seaborn`  
-- `scikit-learn` for modeling and evaluation  
+- **Top predictors**: `SellerRating`, `OpeningPrice`, `Category`, `EndDay`
+- Competitive auctions typically had **lower starting prices** and **high seller ratings**
+- **Model 2** (without `ClosePrice`) is more generalizable for real-world applications
+
+---
+
+### Future Enhancements
+
+- Extend to **Random Forests** or **Gradient Boosted Trees**
+- Use **GridSearchCV** for hyperparameter optimization
+- Visualize **feature importance** to interpret model behavior
+- Test integration with eBay listing tools for real-time guidance
+
+---
+
+### Tools & Libraries
+
+- `pandas`, `numpy`, `matplotlib`, `seaborn`
+- `scikit-learn` for modeling and evaluation
 
