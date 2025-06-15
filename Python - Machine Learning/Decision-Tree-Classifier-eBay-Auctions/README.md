@@ -6,7 +6,7 @@ This project develops a classification model to predict whether an eBay auction 
 
 ## Objective
 
-To build an interpretable machine learning model that predicts auction competitiveness — defined by strong bidder engagement — using features available at the time of listing.
+To build an interpretable machine learning model that predicts auction competitiveness defined by strong bidder engagement using features available at the time of listing.
 
 ---
 
