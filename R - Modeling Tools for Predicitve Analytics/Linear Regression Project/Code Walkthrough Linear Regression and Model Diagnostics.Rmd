@@ -1,6 +1,6 @@
 
 ---
-title: "Project Overview: Linear Regression and Model Diagnostics"
+title: "Code Walkthrough: Linear Regression and Model Diagnostics"
 output: html_document
 ---
 
