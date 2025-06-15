@@ -1,0 +1,191 @@
+
+---
+title: "Project Overview: Model Selection and Regularization Techniques"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(leaps)
+library(glmnet)
+set.seed(123)
+```
+
+## 1. Simulate Polynomial Data
+
+```{r}
+n <- 100
+X <- rnorm(n)
+epsilon <- rnorm(n)
+
+# True model: Y = 1 + 2X - X^2 + 0.5X^3 + noise
+Y <- 1 + 2 * X - 1 * X^2 + 0.5 * X^3 + epsilon
+data <- data.frame(Y = Y, X = X)
+
+# Create polynomial features X^2 to X^10
+for (i in 2:10) {
+  data[[paste0("X", i)]] <- X^i
+}
+```
+
+**Explanation:**  
+We simulate data with a known cubic relationship. Polynomial features up to degree 10 are added for model selection analysis.
+
+---
+
+## 2. Best Subset Selection
+
+```{r}
+best_subset <- regsubsets(Y ~ ., data = data, nvmax = 10)
+summary_best <- summary(best_subset)
+
+# Plot Cp, BIC, and Adjusted R^2
+par(mfrow = c(1, 3))
+plot(summary_best$cp, xlab = "Number of Predictors", ylab = "Cp", type = "b", main = "Cp")
+plot(summary_best$bic, xlab = "Number of Predictors", ylab = "BIC", type = "b", main = "BIC")
+plot(summary_best$adjr2, xlab = "Number of Predictors", ylab = "Adjusted R^2", type = "b", main = "Adjusted R^2")
+
+# Best model by each criterion
+which.min(summary_best$cp)
+which.min(summary_best$bic)
+which.max(summary_best$adjr2)
+```
+
+**Explanation:**  
+- Cp, BIC, Adjusted R² guide model selection.
+- All three select the 3-predictor model, matching the true relationship (X, X², X³).
+
+---
+
+## 3. Forward and Backward Stepwise Selection
+
+```{r}
+forward <- regsubsets(Y ~ ., data = data, nvmax = 10, method = "forward")
+backward <- regsubsets(Y ~ ., data = data, nvmax = 10, method = "backward")
+summary(forward)$which[which.min(summary(forward)$cp), ]
+summary(backward)$which[which.min(summary(backward)$cp), ]
+```
+
+**Explanation:**  
+Both methods also identify the same predictors (X, X², X³), validating their performance when n >> p.
+
+---
+
+## 4. Lasso Regularization
+
+```{r}
+X_poly <- model.matrix(Y ~ . - 1, data = data)
+cv_lasso <- cv.glmnet(X_poly, Y, alpha = 1)
+
+# Plot cross-validation curve
+plot(cv_lasso)
+
+# Coefficients at optimal lambda
+best_lambda <- cv_lasso$lambda.min
+coef(cv_lasso, s = best_lambda)
+```
+
+**Explanation:**  
+Lasso uses cross-validation to find the best regularization parameter. It effectively selects X, X², and X³, shrinking others to 0.
+
+---
+
+## 5. New True Model: Y = 1 + 3 * X^7 + epsilon
+
+```{r}
+Y_new <- 1 + 3 * X^7 + epsilon
+data_new <- data
+data_new$Y <- Y_new
+
+# Best subset for new model
+best_subset_new <- regsubsets(Y ~ ., data = data_new, nvmax = 10)
+summary_best_new <- summary(best_subset_new)
+
+# Lasso for new model
+cv_lasso_new <- cv.glmnet(X_poly, Y_new, alpha = 1)
+best_lambda_new <- cv_lasso_new$lambda.min
+coef(cv_lasso_new, s = best_lambda_new)
+```
+
+**Explanation:**  
+Switching the true model to include only X⁷, both best subset and lasso identify X⁷ as the dominant predictor.
+
+---
+
+## 6. Model Selection with Simulated High-Dimensional Data
+
+```{r}
+n <- 1000
+p <- 20
+X <- matrix(rnorm(n * p), nrow = n)
+beta <- c(1.5, -2, 0, 0, 0.5, rep(0, p - 5))
+epsilon <- rnorm(n)
+Y <- X %*% beta + epsilon
+
+# Split data
+train_idx <- sample(1:n, 100)
+X_train <- X[train_idx, ]
+Y_train <- Y[train_idx]
+X_test <- X[-train_idx, ]
+Y_test <- Y[-train_idx]
+
+colnames(X_train) <- colnames(X_test) <- paste0("X", 1:p)
+train_data <- data.frame(Y = Y_train, X_train)
+```
+
+**Explanation:**  
+Simulate 1000 observations, 20 predictors, and 3 true non-zero coefficients to evaluate model selection in high dimensions.
+
+---
+
+## 7. Training and Test MSE
+
+```{r}
+best_subset <- regsubsets(Y ~ ., data = train_data, nvmax = p)
+subset_summary <- summary(best_subset)
+train_mse <- subset_summary$rss / length(Y_train)
+
+# Test MSE
+test_mse <- numeric(p)
+for (i in 1:p) {
+  coef_i <- coef(best_subset, id = i)
+  pred_idx <- setdiff(names(coef_i), "(Intercept)")
+  if (length(pred_idx) > 0) {
+    X_test_subset <- as.matrix(X_test[, pred_idx])
+    Y_pred <- coef_i[1] + X_test_subset %*% coef_i[-1]
+    test_mse[i] <- mean((Y_test - Y_pred)^2)
+  } else {
+    test_mse[i] <- mean((Y_test - coef_i[1])^2)
+  }
+}
+
+# Plot
+par(mfrow = c(1, 2))
+plot(1:p, train_mse, type = "b", main = "Training MSE vs Model Size", xlab = "Model Size", ylab = "Training MSE")
+plot(1:p, test_mse, type = "b", main = "Test MSE vs Model Size", xlab = "Model Size", ylab = "Test MSE")
+```
+
+**Explanation:**  
+Shows the bias-variance tradeoff: training error decreases, but test error forms a U-shape, minimum at optimal size.
+
+---
+
+## 8. Coefficient Estimation Error
+
+```{r}
+coef_diff <- numeric(p)
+for (i in 1:p) {
+  coef_i <- coef(best_subset, id = i)
+  full_coef <- numeric(p)
+  names(full_coef) <- colnames(X)
+  full_coef[names(coef_i)[-1]] <- coef_i[-1]
+  coef_diff[i] <- sum((beta - full_coef)^2)
+}
+
+plot(1:p, coef_diff, type = "b", xlab = "Model Size",
+     ylab = "Sum of Squared Coefficient Differences",
+     main = "Coefficient Estimation Error")
+```
+
+**Explanation:**  
+Calculates how close each model’s coefficients are to the true values. Optimal model size minimizes this error and aligns with the lowest test MSE.
+
