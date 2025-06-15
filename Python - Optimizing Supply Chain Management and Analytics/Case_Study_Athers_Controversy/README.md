@@ -18,21 +18,26 @@ Diagnose and resolve controversy in inventory allocation between sales and opera
 
 ## Approach
 
-- **Business Understanding**:  
-  - Modeled the root of conflict between regional managers and supply chain team.
-  - Reframed the issue as a constrained optimization problem.
+- **Business Understanding**  
+  - Identified the core conflict between regional sales managers and the supply chain team regarding inventory allocation fairness.  
+  - Reframed the organizational disagreement as a **constrained resource optimization** problem.
 
-- **Data Analysis**:  
-  - Explored allocation patterns and unmet demand across scenarios.
-  - Performed sensitivity analysis on supply caps and demand fulfillment.
+- **Data Analysis**  
+  - Analyzed historical allocation data and unmet demand across business units.  
+  - Conducted sensitivity analysis to evaluate the impact of limited supply on regional fulfillment rates.
 
-- **Optimization Modeling**:  
-  - Applied **linear programming** using Python's `PuLP` to re-allocate inventory.
-  - Objective: maximize fulfilled demand under supply constraints.
+- **Optimization Modeling**  
+  - Developed a **Linear Programming (LP)** model using Python’s `PuLP` library.  
+    - **Objective**: Maximize total fulfilled demand under fixed supply constraints.  
+    - **Decision Variables**: Quantity of inventory allocated to each region.  
+    - **Constraints**:  
+      - Regional demand must be partially or fully met within supply limits.  
+      - Total allocations must not exceed available supply.
 
-- **Scenario Simulation**:  
-  - Compared actual vs. optimized allocations across business units.
-  - Visualized trade-offs and identified win-win outcomes.
+- **Scenario Simulation**  
+  - Compared original (business-as-usual) allocations with optimized outputs.  
+  - Visualized trade-offs and demonstrated how data-driven allocation improves fairness and efficiency.  
+  - Identified a resolution pathway aligning both operational and regional stakeholder objectives.
 
 ---
 
