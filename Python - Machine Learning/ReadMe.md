@@ -96,8 +96,6 @@ Each project folder includes a combination of the following files depending on s
 - `*.csv` / `*.xlsx` – Input or reference data  
 - `Final_predictions.txt` – Output predictions (if applicable)
 
-> 📌 Some projects include only core code and data, while others contain full documentation and walk-throughs.
-
 ---
 
 ## Usage
