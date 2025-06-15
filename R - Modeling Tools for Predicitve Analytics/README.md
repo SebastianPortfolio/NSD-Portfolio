@@ -6,7 +6,7 @@ This directory contains R-based projects demonstrating key concepts in predictiv
 
 ## Projects
 
-### Bias-Variance Tradeoff Project
+### [Bias-Variance Tradeoff Project](./Bias-Variance%20Tradeoff%20Project)
 **Objective:** Illustrate the tradeoff between model complexity and prediction error using polynomial regression on the `Auto.data` dataset.
 
 - Topics: Overfitting, underfitting, test/train error curves
@@ -19,7 +19,7 @@ This directory contains R-based projects demonstrating key concepts in predictiv
 
 ---
 
-### Classification Project
+### [Classification Project](./Classification%20Project)
 **Objective:** Apply classification techniques in R for binary prediction tasks.
 
 - Techniques: Logistic regression, LDA, QDA, KNN
@@ -28,7 +28,7 @@ This directory contains R-based projects demonstrating key concepts in predictiv
 
 ---
 
-### Linear Regression
+### [Linear Regression](./Linear%20Regression)
 **Objective:** Fit and evaluate linear models using continuous predictors.
 
 - Topics: Residual diagnostics, R², multicollinearity
@@ -37,7 +37,7 @@ This directory contains R-based projects demonstrating key concepts in predictiv
 
 ---
 
-### Model Selection
+### [Model Selection](./Model%20Selection)
 **Objective:** Identify the best model using stepwise selection, cross-validation, and information criteria (AIC/BIC).
 
 - File:
@@ -45,7 +45,7 @@ This directory contains R-based projects demonstrating key concepts in predictiv
 
 ---
 
-### Non-Linearity
+### [Non-Linearity](./Non-Linearity)
 **Objective:** Detect and address non-linear relationships using polynomial terms and splines.
 
 - File:
@@ -53,7 +53,7 @@ This directory contains R-based projects demonstrating key concepts in predictiv
 
 ---
 
-### Trees and SVM
+### [Trees and SVM](./Trees%20and%20SVM)
 **Objective:** Compare decision trees and support vector machines (SVM) on classification tasks.
 
 - File:
