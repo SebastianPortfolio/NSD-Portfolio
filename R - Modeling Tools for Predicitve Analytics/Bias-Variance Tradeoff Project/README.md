@@ -1,6 +1,6 @@
 # Bias-Variance Tradeoff Project
 
-This project demonstrates the core concept of the **bias-variance tradeoff** in predictive modeling. Using polynomial regression on the `Auto.data` dataset, it visualizes how increasing model complexity affects training and test error.
+This project demonstrates the core concept of the bias-variance tradeoff in predictive modeling. Using polynomial regression on the `Auto.data` dataset, it visualizes how increasing model complexity affects training and test error.
 
 ---
 
