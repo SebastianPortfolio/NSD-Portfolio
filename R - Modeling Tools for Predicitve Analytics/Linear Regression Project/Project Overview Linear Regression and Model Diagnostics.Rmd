@@ -1,0 +1,104 @@
+
+---
+title: "Project Overview: Linear Regression and Model Diagnostics"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+## 1. Significance of Predictors in Multiple Linear Regression
+
+```{r}
+# Simulated coefficients and p-values
+coefficients <- data.frame(
+  Predictor = c("TV", "Radio", "Newspaper"),
+  Coefficient = c(0.0475, 0.179, -0.001),
+  P_Value = c(0.00001, 0.00001, 0.86)
+)
+coefficients
+```
+
+## 2. Predicting Salary Using Interaction Terms
+
+```{r}
+beta_0 <- 50; beta_1 <- 20; beta_2 <- 0.07
+beta_3 <- 35; beta_4 <- 0.01; beta_5 <- -10
+
+GPA <- 4.0; IQ <- 110; Level <- 1
+predicted_salary <- beta_0 + beta_1 * GPA + beta_2 * IQ + beta_3 * Level +
+  beta_4 * GPA * IQ + beta_5 * GPA * Level
+predicted_salary
+```
+
+## 3. Simple Linear Regression: Passes Through the Mean
+
+```{r}
+set.seed(123)
+x <- rnorm(100)
+y <- 3 + 2 * x + rnorm(100)
+model <- lm(y ~ x)
+
+mean_x <- mean(x)
+mean_y <- mean(y)
+predict(model, data.frame(x = mean_x))
+```
+
+## 4. Modeling mpg with Horsepower in Auto Dataset
+
+```{r}
+auto_data <- read.table("Auto.data", header=TRUE, na.strings="?")
+auto_data <- na.omit(auto_data)
+
+model <- lm(mpg ~ horsepower, data = auto_data)
+summary(model)
+```
+
+## 5. Confidence and Prediction Intervals
+
+```{r}
+predict(model, data.frame(horsepower = 98), interval = "confidence")
+predict(model, data.frame(horsepower = 98), interval = "prediction")
+```
+
+## 6. Diagnostic Plots
+
+```{r, fig.width=7, fig.height=6}
+par(mfrow = c(2, 2))
+plot(model)
+```
+
+## 7. No-Intercept Linear Regression
+
+```{r}
+set.seed(1)
+x <- rnorm(100)
+y <- 2 * x + rnorm(100)
+lm(y ~ x + 0)
+```
+
+## 8. Multicollinearity Simulation
+
+```{r}
+set.seed(1)
+x1 <- runif(100)
+x2 <- 0.5 * x1 + rnorm(100) / 10
+y <- 2 + 2 * x1 + 0.3 * x2 + rnorm(100)
+
+model <- lm(y ~ x1 + x2)
+summary(model)
+cor(x1, x2)
+```
+
+## 9. High-Leverage Point
+
+```{r}
+x1 <- c(x1, 0.1); x2 <- c(x2, 0.8); y <- c(y, 6)
+model <- lm(y ~ x1 + x2)
+summary(model)
+
+par(mfrow = c(2, 2))
+plot(model)
+```
