@@ -1,6 +1,6 @@
 
 ---
-title: "Project Overview: Model Selection and Regularization Techniques"
+title: "Code Walkthrough: Model Selection and Regularization Techniques"
 output: html_document
 ---
 
