@@ -1,6 +1,6 @@
 
 ---
-title: "Project Overview Classification Methods in Statistical Learning"
+title: "Code Walkthrough Classification Methods in Statistical Learning"
 output: html_document
 ---
 
