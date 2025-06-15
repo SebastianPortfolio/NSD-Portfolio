@@ -12,7 +12,9 @@ Diagnose and resolve controversy in inventory allocation between sales and opera
 
 ## Dataset
 
-- `inventory.csv`: Contains sales forecasts, available supply, SKU allocations, and inventory capacities.
+| Dataset Name     | Description |
+|------------------|-------------|
+| `inventory.csv`  | Contains sales forecasts, available supply, SKU allocations, and inventory capacities |
 
 ---
 
