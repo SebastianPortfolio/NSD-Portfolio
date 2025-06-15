@@ -1,0 +1,131 @@
+
+---
+title: "Bias-Variance Tradeoff & Auto Dataset Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Question 1 – Conceptual Analysis
+
+- **(a)** Flexible methods preferred with large n, small p (low overfitting risk).
+- **(b)** Inflexible methods preferred with small n, large p (high variance).
+- **(c)** Flexible methods capture non-linear relationships better.
+- **(d)** Inflexible models handle high error variance better by ignoring noise.
+
+---
+
+## Question 2 – Bias-Variance Tradeoff Simulation
+
+### Generate Error Components
+```{r bias-variance-sim}
+library(ggplot2)
+library(reshape2)
+
+flexibility <- seq(1, 15, by = 0.1)
+bias_squared <- 1 / flexibility
+variance <- log(flexibility) / 3
+training_error <- 1 / (flexibility + 1)
+test_error <- 0.2 / (flexibility + 1) + variance
+bayes_error <- rep(0.1, length(flexibility))
+
+error_data <- data.frame(
+  Flexibility = flexibility,
+  BiasSquared = bias_squared,
+  Variance = variance,
+  TrainingError = training_error,
+  TestError = test_error,
+  BayesError = bayes_error
+)
+
+error_data_melted <- melt(error_data, id = "Flexibility")
+```
+
+### Plot Bias-Variance Tradeoff
+```{r bias-variance-plot}
+ggplot(error_data_melted, aes(x = Flexibility, y = value, color = variable, linetype = variable)) +
+  geom_line(linewidth = 1) +
+  labs(title = "Bias-Variance Tradeoff", x = "Model Flexibility", y = "Error / Value") +
+  theme_minimal() +
+  theme(legend.title = element_blank()) +
+  ylim(0, 1)
+```
+
+---
+
+## Question 3 – Auto Dataset Analysis
+
+### Load and Clean Data
+```{r load-data}
+auto_data <- read.table("Auto.data", header = TRUE, na.strings = "?")
+auto_data <- na.omit(auto_data)
+```
+
+### Identify Predictor Types
+```{r predictor-types}
+quantitative <- sapply(auto_data, is.numeric)
+qualitative <- !quantitative
+
+cat("Quantitative Predictors:", names(auto_data)[quantitative], "\n")
+cat("Qualitative Predictors:", names(auto_data)[qualitative], "\n")
+
+quantitative_cols <- names(auto_data)[quantitative]
+```
+
+### Range of Quantitative Predictors
+```{r range-values}
+range_values <- sapply(auto_data[quantitative_cols], function(x) range(x, na.rm = TRUE))
+range_values
+```
+
+### Mean and Standard Deviation
+```{r mean-sd}
+mean_values <- sapply(auto_data[quantitative_cols], function(x) mean(x, na.rm = TRUE))
+sd_values <- sapply(auto_data[quantitative_cols], function(x) sd(x, na.rm = TRUE))
+
+mean_values
+sd_values
+```
+
+### Subset Analysis: Remove Observations 10–85
+```{r subset-analysis}
+auto_data_subset <- auto_data[-(10:85), ]
+
+subset_range <- sapply(auto_data_subset[quantitative_cols], function(x) range(x, na.rm = TRUE))
+subset_mean <- sapply(auto_data_subset[quantitative_cols], function(x) mean(x, na.rm = TRUE))
+subset_sd <- sapply(auto_data_subset[quantitative_cols], function(x) sd(x, na.rm = TRUE))
+
+subset_range
+subset_mean
+subset_sd
+```
+
+### Scatterplot Matrix for Quantitative Predictors
+```{r scatterplot-matrix, fig.width=10, fig.height=10}
+library(GGally)
+ggpairs(auto_data[quantitative_cols])
+```
+
+### Individual Scatterplots: mpg vs Other Predictors
+```{r scatterplots}
+library(ggplot2)
+
+for (var in quantitative_cols[quantitative_cols != "mpg"]) {
+  print(
+    ggplot(auto_data, aes_string(x = var, y = "mpg")) +
+      geom_point() +
+      labs(title = paste("MPG vs", var), x = var, y = "MPG") +
+      theme_minimal()
+  )
+}
+```
+
+---
+
+## Conclusion
+
+- Strong negative correlation found between **mpg** and **weight**, **horsepower**, and **displacement**.
+- **Year** positively correlates with **mpg**, reflecting advances in fuel efficiency.
+- Several predictors are well-suited for modeling **mpg** using regression or other supervised learning techniques.
