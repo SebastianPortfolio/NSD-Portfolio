@@ -1,0 +1,183 @@
+
+---
+title: "Code Walkthrough: Decision Trees, Bagging, Random Forest, and SVM Classification"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tree)
+library(randomForest)
+library(e1071)
+set.seed(42)
+```
+
+## Part 1: Regression Trees and Ensemble Methods
+
+### Load and Explore Data
+
+```{r}
+carseats <- read.csv("Carseats.csv")
+str(carseats)
+```
+
+### Data Split
+
+```{r}
+train_indices <- sample(1:nrow(carseats), 0.7 * nrow(carseats))
+train <- carseats[train_indices, ]
+test <- carseats[-train_indices, ]
+```
+
+### Fit a Regression Tree
+
+```{r}
+reg_tree <- tree(Sales ~ ., data = train)
+plot(reg_tree)
+text(reg_tree, pretty = 0)
+```
+
+**Explanation:**  
+A regression tree is fitted to predict `Sales`. The tree is visualized to understand decision splits.
+
+### Evaluate Tree Performance
+
+```{r}
+test_predictions <- predict(reg_tree, newdata = test)
+test_mse <- mean((test$Sales - test_predictions)^2)
+test_mse
+```
+
+**Explanation:**  
+The test MSE indicates how well the tree generalizes to new data.
+
+### Cross-Validation and Pruning
+
+```{r}
+cv_tree <- cv.tree(reg_tree)
+plot(cv_tree$size, cv_tree$dev, type = "b", xlab = "Tree Size", ylab = "CV Error")
+
+optimal_size <- which.min(cv_tree$dev)
+pruned_tree <- prune.tree(reg_tree, best = cv_tree$size[optimal_size])
+plot(pruned_tree)
+text(pruned_tree, pretty = 0)
+
+pruned_predictions <- predict(pruned_tree, newdata = test)
+pruned_mse <- mean((test$Sales - pruned_predictions)^2)
+pruned_mse
+```
+
+**Explanation:**  
+Cross-validation helps identify the optimal tree size. Pruning simplifies the model and may improve generalization.
+
+### Bagging Model
+
+```{r}
+bagging_model <- randomForest(Sales ~ ., data = train, mtry = ncol(train) - 1, importance = TRUE)
+bagging_predictions <- predict(bagging_model, newdata = test)
+bagging_mse <- mean((test$Sales - bagging_predictions)^2)
+bagging_mse
+varImpPlot(bagging_model)
+```
+
+**Explanation:**  
+Bagging averages multiple trees to reduce variance and boost accuracy. The importance plot shows key predictors.
+
+### Random Forest Model
+
+```{r}
+random_forest_model <- randomForest(Sales ~ ., data = train, mtry = sqrt(ncol(train) - 1), importance = TRUE)
+rf_predictions <- predict(random_forest_model, newdata = test)
+rf_mse <- mean((test$Sales - rf_predictions)^2)
+rf_mse
+varImpPlot(random_forest_model)
+```
+
+**Explanation:**  
+Random forest improves on bagging by reducing feature correlation. We observe performance and feature importance.
+
+---
+
+## Part 2: Support Vector Machines (SVM)
+
+### Load and Prepare Data
+
+```{r}
+oj <- read.csv("OJ.csv")
+train_indices <- sample(1:nrow(oj), 800)
+train <- oj[train_indices, ]
+test <- oj[-train_indices, ]
+train$Purchase <- as.factor(train$Purchase)
+test$Purchase <- as.factor(test$Purchase)
+```
+
+### Linear SVM
+
+```{r}
+svc_model <- svm(Purchase ~ ., data = train, kernel = "linear", cost = 0.01)
+train_pred <- predict(svc_model, train)
+test_pred <- predict(svc_model, test)
+train_error <- mean(train_pred != train$Purchase)
+test_error <- mean(test_pred != test$Purchase)
+train_error
+test_error
+```
+
+**Explanation:**  
+A linear SVM is trained and evaluated. We compute misclassification errors on both sets.
+
+### Tuning Linear SVM
+
+```{r}
+tune_result <- tune(svm, Purchase ~ ., data = train, kernel = "linear",
+                    ranges = list(cost = seq(0.01, 10, length.out = 10)))
+best_cost <- tune_result$best.parameters$cost
+optimal_svc_model <- svm(Purchase ~ ., data = train, kernel = "linear", cost = best_cost)
+optimal_test_pred <- predict(optimal_svc_model, test)
+mean(optimal_test_pred != test$Purchase)
+```
+
+**Explanation:**  
+Cost parameter tuning improves the linear SVM’s performance by controlling margin flexibility.
+
+### Radial SVM
+
+```{r}
+tune_radial <- tune(svm, Purchase ~ ., data = train, kernel = "radial",
+                    ranges = list(cost = seq(0.01, 10, length.out = 10)))
+best_cost_radial <- tune_radial$best.parameters$cost
+radial_model <- svm(Purchase ~ ., data = train, kernel = "radial", cost = best_cost_radial)
+mean(predict(radial_model, test) != test$Purchase)
+```
+
+**Explanation:**  
+Radial kernel allows non-linear decision boundaries. Tuning cost improves classification accuracy.
+
+### Polynomial SVM
+
+```{r}
+tune_poly <- tune(svm, Purchase ~ ., data = train, kernel = "polynomial", degree = 2,
+                  ranges = list(cost = seq(0.01, 10, length.out = 10)))
+best_cost_poly <- tune_poly$best.parameters$cost
+poly_model <- svm(Purchase ~ ., data = train, kernel = "polynomial", degree = 2, cost = best_cost_poly)
+mean(predict(poly_model, test) != test$Purchase)
+```
+
+**Explanation:**  
+Polynomial kernel SVM captures interaction effects. Tuning selects the optimal cost for performance.
+
+---
+
+## Comparison of Models
+
+```{r}
+error_rates <- data.frame(
+  Method = c("Linear SVM", "Radial SVM", "Polynomial SVM"),
+  Test_Error = c(mean(optimal_test_pred != test$Purchase),
+                 mean(predict(radial_model, test) != test$Purchase),
+                 mean(predict(poly_model, test) != test$Purchase))
+)
+print(error_rates)
+```
+
+**Conclusion:**  
+Among all SVM models, the radial kernel achieved the lowest test error, indicating it handled non-linear boundaries best.
