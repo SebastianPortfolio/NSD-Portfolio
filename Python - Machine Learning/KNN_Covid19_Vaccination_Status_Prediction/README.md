@@ -12,8 +12,11 @@ Predict whether an individual is **fully vaccinated** or **not fully vaccinated*
 
 ## Dataset
 
-- `COVID-19BehaviorData_CAN2022.csv`: Raw survey responses  
-- `ins.xlsx`: Categorical encoding reference guide  
+| Dataset Name                   | Description |
+|--------------------------------|-------------|
+| `COVID-19BehaviorData_CAN2022.csv` | Raw behavioral and demographic survey responses from Canadian residents |
+| `ins.xlsx`                         | Categorical encoding reference guide for survey fields |
+
 - Target variable: `vac` (re-categorized into binary classes)  
 - Features include opinions about vaccines, past behavior, demographics  
 
