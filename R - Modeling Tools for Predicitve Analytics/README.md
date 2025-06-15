@@ -1,78 +1,99 @@
 # R – Modeling Tools for Predictive Analytics
 
-This directory contains R-based projects demonstrating key concepts in predictive modeling. Each project explores different supervised learning techniques, model selection strategies, and diagnostic tools. The focus is on interpretability, validation, and performance optimization, following a statistical learning framework.
+This repository showcases R-based projects focused on predictive modeling. Each project demonstrates supervised learning techniques with emphasis on interpretability, model validation, and performance optimization. Projects follow a statistical learning framework using real datasets.
 
 ---
 
-## Projects
+## Project Overview
 
 ### [Bias-Variance Tradeoff Project](./Bias-Variance%20Tradeoff%20Project)
-**Objective:** Illustrate the tradeoff between model complexity and prediction error using polynomial regression on the `Auto.data` dataset.
+**Objective:** Demonstrate how model complexity affects prediction error using polynomial regression on `Auto.data`.
 
-- Topics: Overfitting, underfitting, test/train error curves
-- Techniques: Polynomial regression, train/test splits, visualization of error tradeoff
-- Key Files:
-  - `BiasVariance_Tradeoff.pdf`: Slide-style summary of findings
-  - `Code_Walkthrough_Bias-Variance Trade-off.Rmd`: Annotated R Markdown code with plots
-  - `Project Overview Bias-Variance Trade-off.docx`: Detailed explanation of the concept and its practical implications
-  - `Auto.data`: Raw dataset used for the analysis
+- **Topics:** Overfitting vs. underfitting, test/train error tradeoff
+- **Files:**
+  - `BiasVariance_Tradeoff.pdf` – Slide-style summary of the bias-variance tradeoff concept
+  - `Code_Walkthrough_Bias-Variance Trade-off.Rmd` – Annotated R code showing polynomial model fitting and error curves
+  - `Project Overview Bias-Variance Trade-off.pdf` – Narrative explanation of the problem, approach, and findings
+  - `Auto.data` – Raw dataset used in modeling
 
 ---
 
 ### [Classification Project](./Classification%20Project)
-**Objective:** Apply classification techniques in R for binary prediction tasks.
+**Objective:** Compare multiple classification techniques on a binary outcome problem.
 
-- Techniques: Logistic regression, LDA, QDA, KNN
-- File:
-  - `R_Classification.pdf`: Explanation of model applications and performance comparison
-
----
-
-### [Linear Regression](./Linear%20Regression)
-**Objective:** Fit and evaluate linear models using continuous predictors.
-
-- Topics: Residual diagnostics, R², multicollinearity
-- File:
-  - `R_Linear_Regression.pdf`: Practical application of linear regression models with real-world data
+- **Techniques:** Logistic regression, LDA, QDA, KNN
+- **Files:**
+  - `Code Walkthrough Classification Methods in Statistical Learning.Rmd` – Full R code with commentary and results
+  - `Project Overview Classification Methods in Statistical Learning.pdf` – Summarizes classifier performance and insights
+  - `R_Classification.pdf` – Visual report with key comparisons and accuracy results
+  - `Auto.data` – Dataset used across all models
 
 ---
 
-### [Model Selection](./Model%20Selection)
-**Objective:** Identify the best model using stepwise selection, cross-validation, and information criteria (AIC/BIC).
+### [Linear Regression Project](./Linear%20Regression%20Project)
+**Objective:** Build and assess linear regression models using numerical and categorical predictors.
 
-- File:
-  - `R_Model_Selection.pdf`: Documentation of model refinement using R functions like `step()` and validation techniques
-
----
-
-### [Non-Linearity](./Non-Linearity)
-**Objective:** Detect and address non-linear relationships using polynomial terms and splines.
-
-- File:
-  - `R_Non-Linearity.html`: Interactive HTML output demonstrating visual diagnostics and model improvements
+- **Topics:** Residual analysis, goodness-of-fit, multicollinearity diagnostics
+- **Files:**
+  - `Code Walkthrough Linear Regression and Model Diagnostics.Rmd` – Step-by-step modeling and diagnostics in R
+  - `Project Overview Linear Regression and Model Diagnostics.pdf` – Overview of modeling process and findings
+  - `R_Linear_Regression.pdf` – Report including visuals, coefficient interpretation, and assumptions check
+  - `Auto.data` – Input dataset
 
 ---
 
-### [Trees and SVM](./Trees%20and%20SVM)
-**Objective:** Compare decision trees and support vector machines (SVM) on classification tasks.
+### [Model Selection Project](./Model%20Selection%20Project)
+**Objective:** Identify the most appropriate model using automated selection techniques and regularization.
 
-- File:
-  - `R_Trees_and_SVM.pdf`: Comparative analysis with performance evaluation on held-out test data
+- **Methods:** Best subset, forward/backward stepwise selection, AIC/BIC, and cross-validation
+- **Files:**
+  - `Code Walkthrough Project Overview Model Selection and Regularization Techniques.Rmd` – Code for model comparison
+  - `Project Overview Model Selection and Regularization Techniques.pdf` – Describes modeling strategies and outcomes
+  - `R_Model_Selection.pdf` – Summarizes performance metrics and selected models
+
+---
+
+### [Non-Linearity Project](./Non-Linearity%20Project)
+**Objective:** Detect and model non-linear relationships in data using polynomial terms and regression splines.
+
+- **Highlights:** Polynomial fits (degrees 1–10), spline fitting, CV-based tuning
+- **Files:**
+  - `Code Walkthrough Exploring Non-Linearity in Regression.Rmd` – Full code with visualization and modeling
+  - `Project Overview Exploring Non-Linearity in Regression.pdf` – High-level explanation of results and interpretation
+  - `R_Non-Linearity.Rmd` – R script with embedded explanations
+  - `R_Non-Linearity.html` – Interactive HTML output of the R Markdown
+  - `Boston.csv` – Dataset used for modeling NOX as a function of DIS
+
+---
+
+### [Trees and SVM Project](./Trees%20and%20SVM%20Project)
+**Objective:** Apply and compare decision trees, bagging, random forests, and SVMs for classification tasks.
+
+- **Datasets:** `Carseats.csv`, `OJ.csv`
+- **Highlights:** Tree pruning, random forest tuning, SVM kernel comparison
+- **Files:**
+  - `Code Walkthrough Decision Trees, Bagging, Random Forest, and SVM Classification.Rmd` – Implementation and evaluation in R
+  - `Project Overview Decision Trees, Bagging, Random Forest, and SVM Classification.pdf` – Analysis summary
+  - `R_Trees_and_SVM.pdf` – Final report comparing model test error rates and interpretability
 
 ---
 
 ## Tools & Libraries
 
-- `ISLR`, `MASS`, `caret`, `e1071`, `ggplot2`
-- Modeling techniques include: Logistic Regression, LDA/QDA, Decision Trees, SVM, and KNN
-- Emphasis on reproducibility using R Markdown (`.Rmd`)
+- **Core R Packages:** `ISLR`, `MASS`, `caret`, `e1071`, `ggplot2`, `randomForest`, `tree`, `splines`, `boot`
+- **Modeling Techniques Covered:**  
+  - Linear/Polynomial Regression  
+  - Classification (Logistic, LDA, QDA, KNN, SVM)  
+  - Tree-based models (CART, Bagging, Random Forest)  
+  - Model selection via stepwise procedures and regularization  
+  - Non-linear modeling via splines and basis functions
 
 ---
 
 ## Learning Outcomes
 
-- Understand the impact of bias vs. variance in model performance
-- Apply both linear and non-linear models for prediction tasks
-- Use validation and selection techniques to improve generalization
-- Develop confidence in building interpretable and testable predictive models in R
-
+- Visualize and explain the bias-variance tradeoff  
+- Apply linear and non-linear models to real-world datasets  
+- Evaluate models using cross-validation, AIC/BIC, and prediction error  
+- Understand model interpretability vs. complexity  
+- Build reproducible workflows using R and R Markdown
