@@ -1,6 +1,18 @@
 # Welcome to My Data Science & Analytics Portfolio
 
-Hi there! I'm a data science practitioner with hands-on experience in **machine learning, statistical modeling, optimization, and data analytics**. This GitHub repository showcases a collection of end-to-end projects built in **Python**, **R**, and **SQL**, developed during academic courses and independent study.
+I'm a data science practitioner with a strong foundation in **mathematics, engineering, and computer science**. I hold a **Master of Management Analytics** from the **University of Toronto**, and a **Bachelor of Mathematics** and **Bachelor of Computer Science** from the **University of Ottawa**.
+
+---
+
+## About Me
+
+With academic training and real-world experience, I specialize in:
+- **Machine Learning & Predictive Modeling**
+- **Optimization & Operations Research**
+- **Statistical Analysis & Forecasting**
+- **Data Wrangling, Feature Engineering, and Visualization**
+
+This GitHub portfolio showcases a range of end-to-end data science and analytics projects developed using Python, R, and SQL, across domains like e-commerce, public health, census analysis, and supply chain management.
 
 ---
 
@@ -43,6 +55,15 @@ Each project folder typically contains:
 - `Code_Walkthrough.ipynb` / `.Rmd`: Detailed, annotated code
 - Raw and cleaned datasets
 - Final predictions or visualizations
+
+---
+
+## 🔧 Tools & Technologies
+
+- **Languages**: Python, R, SQL  
+- **Libraries/Packages**: scikit-learn, TensorFlow, Keras, pandas, NumPy, ggplot2, dplyr  
+- **Techniques**: Classification, Regression, Clustering, Neural Networks, LDA/QDA, KNN, Decision Trees, Model Evaluation, Optimization  
+- **Environments**: Jupyter, RStudio, Git, Excel, R Markdown
 
 ---
 
