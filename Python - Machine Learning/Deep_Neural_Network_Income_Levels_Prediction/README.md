@@ -1,60 +1,77 @@
-# Deep Neural Network – Income Level Prediction
+## Deep Neural Network – Income Level Prediction (U.S. Census)
 
-This project builds and evaluates a deep learning model to predict whether an individual's income exceeds $50K annually using U.S. Census data. It demonstrates a complete pipeline of data preprocessing, neural network training, evaluation, and final prediction deployment.
-
----
-
-## Objective
-Use demographic and employment features to classify income levels using a feedforward neural network (TensorFlow/Keras).
+This project builds and evaluates a deep learning model to classify whether an individual's income exceeds $50K annually using U.S. Census demographic and employment data. It showcases a full machine learning workflow, from preprocessing through model tuning and deployment.
 
 ---
 
-## Dataset
-- **Source:** U.S. Census Bureau
-- **Files:** `USCensusTraining.csv`, `USCensusTest.csv`
-- **Target Variable:** `income` (binary: `<=50K` or `>50K`)
-- **Features:** Mix of numerical and categorical attributes (e.g., age, education, occupation, native-country)
+### Objective
+
+Classify income level (`>50K` or `<=50K`) using a feedforward neural network built with TensorFlow/Keras, leveraging features like age, education, occupation, and more.
 
 ---
 
-## Key Steps
-- **Data Cleaning:** Handle missing values and consolidate rare categories
-- **Feature Engineering:** One-hot encoding of categorical variables
-- **Scaling:** Min-Max normalization of numeric features
-- **Balancing:** SMOTE used to address class imbalance
-- **Model Architecture:**
-  - 2 hidden layers (64 and 32 units)
-  - Sigmoid/ReLU activations
-  - Binary crossentropy loss
-  - RMSprop optimizer
-- **Evaluation:** Accuracy, confusion matrix, F1-score
-- **Tuning:** GridSearchCV for hyperparameter optimization
-- **Deployment:** Final predictions made on processed test data
+### Dataset
+
+| Dataset Name           | Description |
+|------------------------|-------------|
+| `USCensusTraining.csv` | Training dataset with demographic and work-related features |
+| `USCensusTest.csv`     | Test dataset for final prediction |
+| `Final_predictions.txt`| Predicted income labels from the trained model |
+
+**Target Variable**: `income`  
+**Feature Types**: Mixed numerical and categorical attributes (e.g., age, education, workclass)
 
 ---
 
-## Key Files
-- `Python_Code_Deep_Neural_Network_Income_Levels_Prediction.ipynb`: Full implementation pipeline from preprocessing to model deployment
-- `Code_Walkthrough_Deep_Neural_Network_Income_Levels_Prediction.ipynb`: Annotated explanation of model decisions and logic
-- `Project_Overview_Deep_Neural_Network_Income_Level_Prediction.pdf`: High-level summary of methodology, results, and future recommendations
-- `Final_predictions.txt`: Model output predictions for the test dataset
+### Methodology
+
+#### Preprocessing & Feature Engineering:
+- Cleaned missing values and grouped rare categories
+- Applied one-hot encoding to categorical variables
+- Scaled numerical inputs using Min-Max normalization
+
+#### Handling Imbalance:
+- Used **SMOTE** to address class imbalance in training data
+
+#### Neural Network Architecture:
+- 2 hidden layers: 64 and 32 units with ReLU
+- Output layer: Sigmoid activation for binary classification
+- Optimizer: RMSprop
+- Loss Function: Binary crossentropy
+
+#### Evaluation & Tuning:
+- Metrics: Accuracy, F1-score, confusion matrix
+- Performed hyperparameter tuning with `GridSearchCV`
+- Deployed model on unseen test data
 
 ---
 
-## Tools & Libraries
+### Key Files
+
+| File Name                                                                 | Description |
+|---------------------------------------------------------------------------|-------------|
+| `Python_Code_Deep_Neural_Network_Income_Levels_Prediction.ipynb`         | Complete model training, evaluation, and deployment code |
+| `Code_Walkthrough_Deep_Neural_Network_Income_Levels_Prediction.ipynb`    | Annotated notebook explaining key modeling decisions |
+| `Project_Overview_Deep_Neural_Network_Income_Level_Prediction.pdf`       | Executive summary of objectives, methods, and results |
+| `Final_predictions.txt`                                                  | Predicted income classifications for test dataset |
+
+---
+
+### Highlights
+
+- Leveraged real-world census data for deep learning classification
+- Balanced imbalanced classes using SMOTE
+- Demonstrated clear model evaluation and explainability
+- Built a deployable income classification model from scratch
+
+---
+
+### Tools & Libraries
+
 - **TensorFlow / Keras**
-- **Pandas / NumPy**
 - **Scikit-learn / Imbalanced-learn**
+- **Pandas / NumPy**
 - **Matplotlib / Seaborn**
 
----
-
-## Highlights
-- Applied neural networks to real census data
-- Demonstrated model explainability through feature importance
-- Addressed data imbalance with SMOTE
-- Implemented robust tuning and evaluation pipeline
-
----
 
 
