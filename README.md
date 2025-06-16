@@ -75,8 +75,8 @@ Each project folder includes a combination of the following elements, depending 
 
 If you're interested in collaboration, hiring, or feedback — feel free to connect!
 
-Here is my email: ns.doka@rotman.utoronto.ca 
-Here is my linkedin: www.linkedin.com/in/sebastiandoka
+Here is my email: doka.nimrod.lfgeb@gmail.com
+                                             Here is my linkedin: www.linkedin.com/in/sebastiandoka
 
 ---
 
