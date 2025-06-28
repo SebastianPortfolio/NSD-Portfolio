@@ -34,16 +34,16 @@ This GitHub portfolio showcases a range of **end-to-end data science and analyti
 - `Decision-Tree-Classifier-eBay-Auctions`: Predicting auction success using a tree-based model.
 - `Deep_Neural_Network_Income_Levels_Prediction`: Census income classification using DNN.
 - `KMeans_and_BIRCH_Clustering_Canadian_Census_Income_Prediction`: Hybrid clustering and classification.
-- `KNN_Covid19_Vaccination_Status_Prediction`: Predicting vaccination status from behavioral data.
+- `KNN_Covid19_Vaccination_Status_Prediction`: Predicting vaccination status from behavioural data.
 
 ### **Python – Supply Chain Optimization**
-- `Case_Study_Hot_Delivery_Optimization`, `Comfort_Health`, `Ninja_Crush_Saga`, `Athers_Controversy`: Real-world case studies in logistics and operations using Python for decision modeling.
+- `Case_Study_Hot_Delivery_Optimization`, `Case_Study_Comfort_Health`, `Case_Study_Ninja_Crush_Saga`, `Case_Study_Athers_Controversy`: Real-world case studies in logistics and operations using Python for decision modelling.
 
 ### **R – Predictive Analytics**
-- `Bias-Variance Tradeoff`, `Classification Project`, `Linear Regression`, `Model Selection`, `Non-Linearity`, `Trees and SVM`: Statistical learning projects with visualization and performance evaluation.
+- `Bias-Variance Tradeoff Project`, `Classification Project`, `Linear Regression Project`, `Model Selection Project`, `Non-Linearity Project`, `Trees and SVM Project`: Statistical learning projects with visualization and performance evaluation.
 
 ### **SQL – Data Structuring & Analysis**
-- `SQL_Problem1` to `SQL_Problem14`: A range of classic SQL problems involving joins, aggregations, filters, and groupings.
+- `Problem1` to `Problem14`: A range of classic SQL problems involving joins, aggregations, filters, and groupings.
 
 ---
 
