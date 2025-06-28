@@ -27,26 +27,45 @@ This GitHub portfolio showcases a range of **end-to-end data science and analyti
 - **SQL for Data Structuring and Querying**
 
 ---
-
 ## Project Categories
 
 ### **Python – Machine Learning**
-- `Decision-Tree-Classifier-eBay-Auctions`: Predicting auction success using a tree-based model.
-- `Deep_Neural_Network_Income_Levels_Prediction`: Census income classification using DNN.
-- `KMeans_and_BIRCH_Clustering_Canadian_Census_Income_Prediction`: Hybrid clustering and classification.
-- `KNN_Covid19_Vaccination_Status_Prediction`: Predicting vaccination status from behavioural data.
+- **`Decision-Tree-Classifier-eBay-Auctions`**: Predicting auction success using decision trees  
+- **`Deep_Neural_Network_Income_Levels_Prediction`**: Census income classification using deep neural networks  
+- **`KMeans_and_BIRCH_Clustering_Canadian_Census_Income_Prediction`**: Hybrid clustering and classification  
+- **`KNN_Covid19_Vaccination_Status_Prediction`**: Predicting vaccination status using KNN  
 
-### **Python – Supply Chain Optimization**
-- `Case_Study_Hot_Delivery_Optimization`, `Case_Study_Comfort_Health`, `Case_Study_Ninja_Crush_Saga`, `Case_Study_Athers_Controversy`: Real-world case studies in logistics and operations using Python for decision modelling.
+### **Python – Optimizing Supply Chain Management and Analytics**
+- **`Case_Study_Hot_Delivery_Optimization`**: Delivery time optimization using decision modeling  
+- **`Case_Study_Comfort_Health`**: Operations modeling in health product logistics  
+- **`Case_Study_Ninja_Crush_Saga`**: Distribution optimization for a game merchandise firm  
+- **`Case_Study_Athers_Controversy`**: Supply chain modeling and ethical tradeoffs  
 
-### **R – Predictive Analytics**
-- `Bias-Variance Tradeoff Project`, `Classification Project`, `Linear Regression Project`, `Model Selection Project`, `Non-Linearity Project`, `Trees and SVM Project`: Statistical learning projects with visualization and performance evaluation.
+### **R – Modeling Tools for Predictive Analytics**
+- **`Bias-Variance Tradeoff Project`**: Understanding generalization error tradeoffs  
+- **`Classification Project`**: Binary classification and ROC evaluation  
+- **`Linear Regression Project`**: Predictive modeling with linear techniques  
+- **`Model Selection Project`**: AIC/BIC-based model comparison  
+- **`Non-Linearity Project`**: Addressing non-linearity in model structures  
+- **`Trees and SVM Project`**: Decision trees and support vector machines  
 
-### **SQL – Data Structuring & Analysis**
-- `Problem1` to `Problem14`: A range of classic SQL problems involving joins, aggregations, filters, and groupings.
+### **SQL – Structuring and Visualizing Data for Analytics**
+- **`Amazon_ROA_Analysis Project`**: ROA trends and benchmarking for Amazon  
+- **`CEO Pay and Total q Analysis Project`**: Executive compensation vs. performance  
+- **`Executive Compensation and CEO Analysis Project`**: Dual roles and firm outcomes  
+- **`Firm-Specific Profit Volatility (US Firms) Project`**: Quartile shifts in performance  
+- **`Firm Industry Analysis Project`**: NAICS reclassification and concentration  
+- **`Firm Lifespan and Sales Power Project`**: Tracking firm survival from 1990 to 2023  
+- **`Firm-Specific Profits Outperformance Analysis Project`**: Persistent firm overperformance  
+- **`Firm-Specific Profit and Executive Compensation Analysis Project`**: Linking CEO tenure to firm profitability  
+- **`RD Stock US Analysis Project`**: Measuring innovation stock using R&D data  
+- **`ROA US Firms Employee Analysis Project`**: ROA linked to firm size and staffing  
+- **`Sales Concentration and ROA Gap Project`**: Measuring performance inequality  
+- **`Top 500 Sales ROA Analysis Project`**: Long-term tracking of dominant firms  
+- **`Total q Decile to ROA Predictive Power Analysis Project`**: Forecasting outcomes from 2014 q levels  
+- **`US Firm Analysis Project`**: Industry-normalized ROA analysis and filtering  
 
 ---
-
 
 ##  Repository Structure
 
