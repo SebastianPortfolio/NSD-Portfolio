@@ -1,12 +1,12 @@
 # Amazon_ROA_Analysis Project
 
-## 📈 Project Overview
+## Project Overview
 
 This SQL-based analysis investigates **Return on Assets (ROA)** and employment data for Amazon (ticker: `AMZN`) from 1996 to 2023, using the **North American Stock Market 1990–2023** dataset (v1.0). It also compares Amazon’s performance to broader benchmarks for **U.S.-headquartered, nonfinancial firms** across different asset tiers.
 
 ---
 
-## 🧠 Key Questions Explored
+## Key Questions Explored
 
 1. **Amazon’s Average ROA (2014–2023)**  
    What was Amazon's average return on assets over the past decade?
@@ -22,16 +22,16 @@ This SQL-based analysis investigates **Return on Assets (ROA)** and employment d
 
 ---
 
-## 🛠 Data Source
+## Data Source
 
 - **Dataset**: North American Stock Market 1990–2023  
 - **Version**: v1.0  
-- **Available at**: [https://drive.google.com/file/d/1bcICkKdPWD6ZMN0h6AxpmNkJAXkNHrNe/view?usp=sharing]  
+- **Available at**: https://drive.google.com/file/d/1bcICkKdPWD6ZMN0h6AxpmNkJAXkNHrNe/view?usp=sharing
 - **Variable definitions**: See `Variable Definitions - Stock Market Database 1990-2023.pdf` in this repo
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 Amazon_ROA_Analysis Project/
 │
@@ -42,7 +42,7 @@ Amazon_ROA_Analysis Project/
 
 ---
 
-## 🧾 Key Variables Used
+## Key Variables Used
 
 | Variable | Description |
 |----------|-------------|
@@ -57,7 +57,7 @@ Amazon_ROA_Analysis Project/
 
 ---
 
-## 💡 Insights Summary
+## Insights Summary
 
 - Amazon's **average ROA from 2014 to 2023** offers insight into the company’s long-term profitability.
 - Amazon’s **employee growth** reflects its transformation from a small-scale operation in 1996 to a massive global employer.
@@ -65,7 +65,7 @@ Amazon_ROA_Analysis Project/
 
 ---
 
-## 📬 Contact
+## Contact
 
 For questions or collaboration inquiries, feel free to reach out:
 
