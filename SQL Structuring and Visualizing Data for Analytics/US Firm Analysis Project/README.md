@@ -54,10 +54,10 @@ US Firm Analysis Project/
 
 ## Insights
 
-- 📊 **Sales per employee** peaked in the years when tech and logistics boomed.
-- 🏢 Thousands of firms surpassed **$100 million in assets** at some point, though few sustained it over time.
-- ⏳ Only a small group of firms maintained **data coverage for all 34 years**.
-- 💡 One standout firm held the **highest long-term ROA** among consistently large, nonfinancial companies.
+-  Sales per employee peaked in the years when tech and logistics boomed.
+- Thousands of firms surpassed $100 million in assets at some point, though few sustained it over time.
+- Only a small group of firms maintained data coverage for all 34 years.
+- One standout firm held the highest long-term ROA among consistently large, nonfinancial companies.
 
 ---
 
